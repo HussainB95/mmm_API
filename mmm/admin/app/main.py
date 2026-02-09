@@ -8,7 +8,7 @@ from models import SpecialInterestCreate, SpecialInterestOut
 # create tables
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="MMM Admin API")
+app = FastAPI(title="MMM Admin API") #object created
 
 origins = [
     "https://auto-parts-front.vercel.app",
