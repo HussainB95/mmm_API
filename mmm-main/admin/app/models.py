@@ -1,10 +1,18 @@
 from pydantic import BaseModel, Field, UUID4, EmailStr
 from uuid import UUID
-from typing import Literal
+from typing import Optional, Dict, Any, Literal, List
 from datetime import datetime, date
 import re
-from typing import Optional, Dict, Any, Literal, List
+from sqlalchemy import Column, Integer, String, DateTime #This file is for SQLAlchemy
+from sqlalchemy.ext.declarative import declarative_base
 
+Base = declarative_base()
+
+class SpecialInterest(Base):
+    __tablename__ = "special_interest"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, nullable=False)
 
 class PageBase(BaseModel):
     slug: str
