@@ -4,6 +4,8 @@ from typing import Literal
 from datetime import datetime, date
 import re
 from typing import Optional, Dict, Any, Literal, List
+
+
 class PageBase(BaseModel):
     slug: str
     title: str
