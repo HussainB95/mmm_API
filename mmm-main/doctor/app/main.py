@@ -1,14 +1,24 @@
 from collections import deque
 import threading
 import time
+
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from database import lifespan
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from routers import doctor
 
-app = FastAPI(lifespan=lifespan)
+from database import engine # type: ignore
+from services.referrer_form_services import Base # type: ignore
+from routers import doctor
+from routers.referrer_form import router as referrer_form_router
+
+app = FastAPI()
+
+# create tables
+Base.metadata.create_all(bind=engine)
+
+# routers
+app.include_router(referrer_form_router)
+app.include_router(doctor.router)
 
 #app.mount("/image", StaticFiles(directory="/public_files/images"), name="images")
 

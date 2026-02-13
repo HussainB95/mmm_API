@@ -1,8 +1,7 @@
 from fastapi import APIRouter, HTTPException, Request, Depends
-from models import UserRole, ReferralCreate, DoctorProfileCreate
+from models import UserRole, DoctorProfileCreate # type: ignore
 from uuid import UUID
-
-from services.doctor_service import view_user_service, create_referral_service
+from services.doctor_service import view_user_service, create_referral_service # type: ignore
 
 router = APIRouter(prefix="/v1/doctor", tags=["Manage Users"])
 
@@ -16,7 +15,7 @@ async def view_patient(user_role:UserRole, request: Request):
 
 @router.post("/referrals")
 async def create_referral(
-    data: ReferralCreate,
+    data: DoctorProfileCreate,
     request: Request
 ):
     return await create_referral_service(data, request)
