@@ -1,0 +1,42 @@
+<!-- Email template for verification_link-->
+    <html>
+        <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+            <div style="max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 10px;">
+                
+                <h2 style="color: #333;">Verify Your Email Address</h2>
+                
+                <p>Hi {name},</p>
+                
+                <p>Thank you for registering with us.</p>
+                
+                <p>Please click the button below to verify your email address:</p>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <a href="{verification_link}" 
+                       style="background-color: #4CAF50; 
+                              color: white; 
+                              padding: 12px 25px; 
+                              text-decoration: none; 
+                              border-radius: 5px;
+                              font-weight: bold;">
+                        Verify Email
+                    </a>
+                </div>
+                
+                <p>This link will expire in <strong>30 minutes</strong>.</p>
+                
+                <p>If you did not create this account, you can safely ignore this email.</p>
+                
+                <hr>
+                
+                <p style="font-size: 12px; color: gray;">
+                    If the button doesn't work, copy and paste this link into your browser:
+                    <br>
+                    {verification_link}
+                </p>
+                
+                <p>Best regards,<br>mmm Team</p>
+            
+            </div>
+        </body>
+    </html>
