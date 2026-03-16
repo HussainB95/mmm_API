@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from fastapi import HTTPException
 from ..database_model import PractitionerProfile, VerificationStatus
 from ..models import PractitionerProfileCreate, VerificationStatusCreate
+from datetime import datetime
 
 
 # -- CREATE PRACTITIONER PROFILE --
@@ -96,3 +97,50 @@ def get_verification_status(db: Session, practitioner_id: str):
     return db.query(VerificationStatus).filter(
         VerificationStatus.practitioner_id == practitioner_id
     ).all()
+
+
+# -- VERIFICATION --
+
+def verify_practitioner_profile(db, practitioner_id, status):
+
+    profile = db.query(PractitionerProfile).filter(
+        PractitionerProfile.practitioner_id == practitioner_id
+    ).first()
+
+    if not profile:
+        raise Exception("Practitioner profile not found")
+
+    profile.verification_status = status
+    profile.verified_at = datetime.utcnow()
+
+    db.commit()
+    db.refresh(profile)
+
+    return profile
+
+
+# -- Document Verification --
+def verify_document(db, practitioner_id, document_name, status):
+
+    verification = db.query(VerificationStatus).filter(
+        VerificationStatus.practitioner_id == practitioner_id,
+        VerificationStatus.document_name == document_name
+    ).first()
+
+    if not verification:
+        verification = VerificationStatus(
+            practitioner_id=practitioner_id,
+            document_name=document_name,
+            status=status,
+            verified_at=datetime.utcnow()
+        )
+        db.add(verification)
+
+    else:
+        verification.status = status
+        verification.verified_at = datetime.utcnow()
+
+    db.commit()
+    db.refresh(verification)
+
+    return verification

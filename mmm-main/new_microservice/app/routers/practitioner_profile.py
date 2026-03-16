@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from ..services import practitioner_profile_service
 from ..database import get_db
 from ..models import *
+from ..database_model import PractitionerProfile
 
 router = APIRouter(prefix="/practitioner/profile", tags=["Practitioner Profile"])
 
@@ -15,8 +16,8 @@ def create_profile(data: PractitionerProfileCreate, db: Session = Depends(get_db
 def get_profile(practitioner_id: str, db: Session = Depends(get_db)):
     return practitioner_profile_service.get_profile(db, practitioner_id)
 
-@router.put("/profile-data/{practitioner_id}")
-def update_profile_data(practitioner_id: str, data: ProfileData, db: Session = Depends(get_db)):
+@router.put("/personal-info/{practitioner_id}")
+def update_personal_info(practitioner_id: str, data: ProfileData, db: Session = Depends(get_db)):
     return practitioner_profile_service.update_section(
         db,
         practitioner_id,
@@ -75,5 +76,27 @@ def update_documents(practitioner_id: str, data: Documents, db: Session = Depend
         db,
         practitioner_id,
         "documents",
-        data.model_dump()
+        data.model_dump(mode="json")
     )
+
+
+@router.patch("/verification/{practitioner_id}")
+def update_verification(
+    practitioner_id: str,
+    data: VerificationStatusCreate,
+    db: Session = Depends(get_db)
+):
+
+    profile = practitioner_profile_service.verify_practitioner_profile(
+        db,
+        practitioner_id,
+        data.status
+    )
+
+    if not profile:
+        raise HTTPException(status_code=404, detail="Practitioner not found")
+
+    return {
+        "message": "Verification status updated",
+        "status": profile.verification_status
+    }
