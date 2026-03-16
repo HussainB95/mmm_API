@@ -66,10 +66,10 @@ class PractitionerProfileResponse(PractitionerProfileBase):
 
 # -- VerificationStatus --
 class VerificationStatusEnum(str, Enum):
-    pending = "Pending"
-    approved = "Approved"
-    rejected = "Rejected"
-    under_review = "Under Review"
+    pending = "pending"
+    approved = "approved"
+    rejected = "rejected"
+    under_review = "under_review"
 
 class DocumentEnum(str, Enum):
     hpcsa_sacss = "hpcsa_sacss"
@@ -91,4 +91,3 @@ class VerificationStatusResponse(VerificationStatusBase):
 
     class Config:
         orm_mode = True
-
