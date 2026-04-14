@@ -1,10 +1,34 @@
 from enum import Enum
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import Optional, Dict, Any
 from datetime import datetime, date
+import uuid
+
+# -- GoogleOAth --
+
+class UserBase(BaseModel):
+    email: EmailStr
+    name: Optional[str] = None
+    picture: Optional[str] = None
+
+class UserCreate(BaseModel):
+    google_id: str
+
+class UserResponse(UserBase):
+    id: uuid.UUID
+    google_id: Optional[str]
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
 
 
 # -- PractitionerProfile --
+
+class Oauth(BaseModel):
+    id: str
+    email: str
+    password: str
 
 class ProfileData(BaseModel):
     name: str
@@ -39,11 +63,28 @@ class Documents(BaseModel):
     mps: Optional[DocumentItem] = None
     cpd: Optional[DocumentItem] = None
 
+class Gender(str, Enum):
+    male = "Male"
+    female = "Female"
+    other = "Other"
+
+class ProfileImage(BaseModel):
+    file_url: str
+
+class PatientInfo(BaseModel):
+    name: str
+    phone_no: int
+    gender: Gender
+    dob: str
+    blood_group: str
+    profile_image: ProfileImage
+
 class PractitionerProfileBase(BaseModel):
     id: str  
     practitioner_id: str
 
     profile_data: Optional[ProfileData] = None
+    patient_info: Optional[PatientInfo] = None
     banking_details: Optional[BankingDetails] = None
     languages: Optional[Languages] = None
     special_interest: Optional[SpecialInterest] = None

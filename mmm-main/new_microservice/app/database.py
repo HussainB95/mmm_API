@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+import os
 
 DATABASE_URL = "postgresql://postgres:My%40dmin1234@localhost:5432/mmm"
 
@@ -20,3 +21,5 @@ def get_db():
         yield db
     finally:
         db.close()
+
+        
