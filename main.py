@@ -47,4 +47,4 @@ app.include_router(special_interest_router)
 
 @app.get("/")
 def home():
-    return {"message": "Welcome to mmm API"}
+    return {"message": "Welcome to mmm"}
