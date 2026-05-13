@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, Request, Depends
-from models import PatientUpdate, UserRole
+from ..models import PatientUpdate, UserRole
 from uuid import UUID
-from deps import require_admin
-from services.users_service import view_user_service, get_user_service, delete_user_service, update_user_service
+from ..deps import require_admin
+from ..services.users_service import view_user_service, get_user_service, delete_user_service, update_user_service
 
 router = APIRouter(prefix="/v1/admin/manage-users", tags=["Manage Users"])
 

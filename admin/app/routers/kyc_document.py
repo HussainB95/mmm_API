@@ -1,8 +1,8 @@
 from fastapi import APIRouter, UploadFile, File, Form, Request, HTTPException, BackgroundTasks
 import os
 from uuid import UUID
-from services.kyc_document_service import view_kyc_document_service, delete_kyc_document_service, accept_kyc_document_service, view_kyc_supplier_service
-from models import kycActionModel
+from ..services.kyc_document_service import view_kyc_document_service, delete_kyc_document_service, accept_kyc_document_service, view_kyc_supplier_service
+from ..models import kycActionModel
 
 
 router = APIRouter(prefix="/v1/admin", tags=["Supplier KYC"])

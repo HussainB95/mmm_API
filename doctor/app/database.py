@@ -1,4 +1,3 @@
-import asyncpg
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from dotenv import load_dotenv
@@ -6,7 +5,7 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 
-db_url = "postgresql://postgres:Myp0stgre$@localhost:5432/mmm"
+db_url = "postgresql://postgres:My%40dmin1234@localhost:5432/mmm"
 
 engine = create_engine(db_url)
 

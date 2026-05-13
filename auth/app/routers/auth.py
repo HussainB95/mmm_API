@@ -4,7 +4,7 @@ from ..models import (MagicUserLogin, UserRegister, UserOut, UserLogin, ForgotPa
 from ..database import get_db
 from ..services import auth_service
 
-router = APIRouter()
+router = APIRouter(tags=["Authentication"])
 
 @router.post("/register")
 def register(

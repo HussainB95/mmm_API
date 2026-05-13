@@ -3,8 +3,8 @@ from datetime import datetime
 from fastapi import HTTPException, Request, BackgroundTasks
 import os
 from datetime import date, datetime
-from utils.email import send_email
-from services.logs_service import write_log
+from ..utils.email import send_email
+from ..services.logs_service import write_log
 
 UPLOAD_DIR = "./public_files/images/"
 os.makedirs(UPLOAD_DIR, exist_ok=True)

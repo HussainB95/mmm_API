@@ -1,9 +1,9 @@
-import asyncpg
+import asyncpg # type: ignore
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from dotenv import load_dotenv
 import os
-from app.database_model import SessionLocal  # type: ignore
+from .database_model import SessionLocal
 
 
 load_dotenv()

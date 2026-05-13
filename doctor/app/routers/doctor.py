@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Request, Depends
-from models import UserRole, DoctorProfileCreate # type: ignore
+from ..models import UserRole, DoctorProfileCreate
 from uuid import UUID
-from services.doctor_service import view_user_service, create_referral_service # type: ignore
+from ..services.doctor_service import view_user_service, create_referral_service # type: ignore
 
 router = APIRouter(prefix="/v1/doctor", tags=["Manage Users"])
 

@@ -1,11 +1,10 @@
 #routers\doctor_profile.py
 
 from fastapi import FastAPI,APIRouter, HTTPException, Request, Depends
-from models import UserRole, DoctorProfileCreate # type: ignore
+from ..models import UserRole, DoctorProfileCreate # type: ignore
 from uuid import UUID
-from services.doctor_profile_services import Base, DoctorProfileDB  # type: ignore
-from database import get_db, Session # type: ignore
-import models # type: ignore
+from ..services.doctor_profile_services import Base, DoctorProfileDB  # type: ignore
+from ..database import get_db, Session # type: ignore
 
 router = APIRouter(prefix="/doctor-profile", tags=["Doctor Profile"])
 

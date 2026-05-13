@@ -3,7 +3,7 @@ from fastapi import  HTTPException, Request
 from datetime import datetime
 import json
 from fastapi.responses import JSONResponse
-from services.logs_service import write_log
+from ..services.logs_service import write_log
 
 
 UPLOAD_FOLDER = "./public_files/images/"

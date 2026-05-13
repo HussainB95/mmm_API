@@ -11,7 +11,7 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"message": "FastAPI running."}
+    return {"message": "authorization"}
 
 # Create tables
 Base.metadata.create_all(bind=engine)

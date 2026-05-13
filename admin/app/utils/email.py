@@ -4,14 +4,11 @@ import os
 import smtplib
 from dotenv import load_dotenv
 
-
-
 load_dotenv()
 SMTP_SERVER = os.getenv("SMTP_SERVER")
-SMTP_PORT = int(os.getenv("SMTP_PORT"))
+SMTP_PORT = os.getenv("SMTP_PORT")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
-
 
 def build_email_template(subject: str, body_content: str) -> str:
     """

@@ -1,15 +1,14 @@
 #router\special_interest.py
 
 from fastapi import APIRouter, Depends, FastAPI
-from datetime import datetime
 from sqlalchemy.orm import Session
-from services.special_interest_service import SpecialInterest # type: ignore
-from database import session, engine # type: ignore
-import models
+from ..services.special_interest_service import SpecialInterest # type: ignore
+from ..database import session, engine # type: ignore
+from .. import models
 
 router = APIRouter(prefix="/special-interest", tags=["Special Interest"]) 
 
-models.Base. metadata.create_all(bind=engine)
+models.Base.metadata.create_all(bind=engine)
 
 #Closing the connection after use
 

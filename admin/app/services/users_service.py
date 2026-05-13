@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Request, Depends, Response
 from uuid import UUID
-from deps import require_admin
-from services.logs_service import write_log
+from ..deps import require_admin
+from ..services.logs_service import write_log
 
 async def view_user_service(user_role,request: Request):
     async with request.app.state.pool.acquire() as conn:

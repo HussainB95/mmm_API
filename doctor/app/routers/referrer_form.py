@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from database import get_db  # type: ignore
-from models import ReferralFormCreate  # type: ignore
-from services.referrer_form_services import ReferralFormDB  # type: ignore
+from ..database import get_db 
+from ..models import ReferralFormCreate  # type: ignore
+from ..services.referrer_form_services import ReferralFormDB  # type: ignore
 
 router = APIRouter(prefix="/referrer-form", tags=["Referrer Form"])
 

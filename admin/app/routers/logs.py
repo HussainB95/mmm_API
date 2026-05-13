@@ -4,9 +4,9 @@ from uuid import UUID
 from datetime import datetime
 from fastapi import APIRouter, Depends, Query, Request, HTTPException
 from pydantic import UUID4
-from models import LogOut, LogListOut
-from deps import require_admin
-from services.logging import delete_log_service, get_log_service, list_logs_service
+from ..models import LogOut, LogListOut
+from ..deps import require_admin
+from ..services.logging import delete_log_service, get_log_service, list_logs_service
 
 router = APIRouter(prefix="/v1/admin/logs", tags=["Admin Logs"])
 
