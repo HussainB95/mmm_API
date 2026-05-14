@@ -13,9 +13,12 @@ from admin.app.routers.special_interest import router as special_interest_router
 from admin.app.routers.users_manage import router as users_manage_router
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import create_engine
-from starlette.middleware.sessions import SessionMiddleware
+from dotenv import load_dotenv
+import os
 
-db_url = "postgresql://postgres:My%40dmin1234@localhost:5432/mmm"
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 router = APIRouter(tags=["mmm API"])
 
@@ -23,14 +26,9 @@ app = FastAPI()
 
 Base = declarative_base()
 
-engine = create_engine(db_url)
+engine = create_engine(DATABASE_URL)
 
 Base.metadata.create_all(bind=engine)
-
-app.add_middleware(
-    SessionMiddleware,
-    secret_key = "secret-key" #will change it later
-)
 
 app.include_router(patient_profile_router)
 app.include_router(practitioner_profile_router)
