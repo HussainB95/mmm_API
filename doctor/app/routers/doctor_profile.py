@@ -4,7 +4,8 @@ from fastapi import FastAPI,APIRouter, HTTPException, Request, Depends
 from ..models import UserRole, DoctorProfileCreate # type: ignore
 from uuid import UUID
 from ..services.doctor_profile_services import Base, DoctorProfileDB  # type: ignore
-from ..database import get_db, Session # type: ignore
+from ..database import get_db
+from sqlalchemy.orm import Session
 
 router = APIRouter(prefix="/doctor-profile", tags=["Doctor Profile"])
 
